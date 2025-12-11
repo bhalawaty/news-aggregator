@@ -2,11 +2,12 @@
 
 ## Table of Contents
 1. [System Overview](#system-overview)
-2. [API Endpoints](#api-endpoints)
-3. [Architecture](#architecture)
-4. [Scheduled Tasks](#scheduled-tasks)
-5. [Adding New News Providers](#adding-new-news-providers)
-6. [Database Models](#database-models)
+2. [Tech Stack](#tech-stack)
+3. [API Endpoints](#api-endpoints)
+4. [Architecture](#architecture)
+5. [Scheduled Tasks](#scheduled-tasks)
+6. [Duplicate Detection Strategy](#duplicate-detection-strategy)
+7. [Error Handling & Monitoring](#error-handling--monitoring)
 
 ---
 
@@ -26,6 +27,16 @@ The News Aggregator is a robust Laravel-based system that automatically fetches,
 
 ---
 
+
+## Tech Stack
+
+- **Laravel / PHP** – Core backend framework
+- **Laravel Scout + Elasticsearch** – Full-text search indexing
+- **PostgresSQL** – Primary database
+- **Queues & Scheduled Jobs** – For background fetching, indexing, and processing
+- **Feature Tests (End-to-End)** – Ensuring API reliability and behavior consistency
+
+---
 ## API Endpoints
 
 ### 1. Get All Articles (with filters)
@@ -144,7 +155,7 @@ ArticleService → bulkUpsert
     ↓
 Database (detect duplicates, upsert/update)
     ↓
-Search Index (Scout/Elasticsearch)
+Search Index (Scout)
 ```
 ---
 
